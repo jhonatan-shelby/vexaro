@@ -1,0 +1,18 @@
+{
+  "settings": {
+    "title": "Configuracion",
+    "subtitle": "Perfil, idioma, tema y preferencias de sincronizacion.",
+    "profile": "Perfil",
+    "displayName": "Nombre visible",
+    "email": "Correo",
+    "language": "Idioma",
+    "theme": "Tema",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "save": "Guardar preferencias",
+    "saved": "Preferencias guardadas",
+    "sync": "Sincronizacion offline",
+    "pending": "Operaciones pendientes",
+    "replay": "Reproducir cola"
+  }
+}

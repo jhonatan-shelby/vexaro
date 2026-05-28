@@ -1,0 +1,18 @@
+{
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Profile, language, theme, and sync preferences.",
+    "profile": "Profile",
+    "displayName": "Display name",
+    "email": "Email",
+    "language": "Language",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "save": "Save preferences",
+    "saved": "Preferences saved",
+    "sync": "Offline sync",
+    "pending": "Pending operations",
+    "replay": "Replay queue"
+  }
+}

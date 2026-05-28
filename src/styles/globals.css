@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 33% 98%;      /* #f7f9fb */
+    --foreground: 200 9% 11%;       /* #191c1e */
+    --card: 0 0% 100%;
+    --card-foreground: 200 9% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 9% 11%;
+    
+    --surface: 210 33% 98%;
+    --surface-variant: 200 9% 89%;  /* #e0e3e5 */
+    
+    --primary: 142 100% 5%;         /* #001809 */
+    --primary-foreground: 0 0% 100%;
+    --primary-container: 143 51% 12%;/* #0f2e1b */
+    --primary-fixed: 130 52% 86%;   /* #c8ebce */
+    
+    --secondary: 78 100% 21%;       /* #416900 */
+    --secondary-foreground: 0 0% 100%;
+    --secondary-container: 78 88% 69%;/* #b7f569 */
+    --secondary-fixed: 78 88% 69%;
+    
+    --muted: 210 33% 95%;           
+    --muted-foreground: 200 9% 45%; 
+    
+    --accent: 78 88% 69%;           
+    --accent-foreground: 142 100% 5%;
+    
+    --destructive: 0 74% 42%;
+    --destructive-foreground: 0 0% 100%;
+    --error: 0 74% 42%;
+    --error-foreground: 0 0% 100%;
+    --error-container: 0 100% 92%;
+    
+    --border: 210 14% 89%;          /* soft slate */
+    --input: 210 14% 89%;
+    --ring: 142 100% 5%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 200 9% 11%;
+    --foreground: 210 33% 98%;
+    --card: 200 9% 14%;
+    --card-foreground: 210 33% 98%;
+    --popover: 200 9% 14%;
+    --popover-foreground: 210 33% 98%;
+    
+    --surface: 200 9% 11%;
+    --surface-variant: 200 9% 25%;
+    
+    --primary: 130 52% 86%;
+    --primary-foreground: 142 100% 5%;
+    --primary-container: 143 51% 12%;
+    
+    --secondary: 78 88% 69%;
+    --secondary-foreground: 78 100% 21%;
+    --secondary-container: 78 100% 21%;
+    
+    --muted: 200 9% 20%;
+    --muted-foreground: 210 33% 80%;
+    
+    --accent: 78 88% 69%;
+    --accent-foreground: 142 100% 5%;
+    
+    --destructive: 0 100% 92%;
+    --destructive-foreground: 0 74% 42%;
+    --error: 0 100% 92%;
+    --error-foreground: 0 74% 42%;
+    
+    --border: 200 9% 25%;
+    --input: 200 9% 25%;
+    --ring: 130 52% 86%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased font-sans;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+  }
+  .data-value {
+    @apply font-mono;
+  }
+}
+
+@layer components {
+  .fc {
+    --fc-border-color: hsl(var(--border));
+    --fc-button-bg-color: hsl(var(--primary));
+    --fc-button-border-color: hsl(var(--primary));
+    --fc-button-hover-bg-color: hsl(var(--primary-container));
+    --fc-button-hover-border-color: hsl(var(--primary-container));
+    --fc-button-active-bg-color: hsl(var(--secondary));
+    --fc-button-active-border-color: hsl(var(--secondary));
+    --fc-today-bg-color: hsl(var(--secondary-container) / 0.28);
+    color: hsl(var(--foreground));
+    font-family: var(--font-inter);
+  }
+
+  .fc .fc-toolbar-title {
+    font-family: var(--font-hanken);
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .fc .fc-button {
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+
+  .fc .fc-daygrid-day-number,
+  .fc .fc-col-header-cell-cushion {
+    color: hsl(var(--foreground));
+    font-size: 0.75rem;
+  }
+
+  .fc .fc-event {
+    border-radius: 0.5rem;
+    padding: 0.125rem 0.25rem;
+    font-size: 0.75rem;
+  }
+}

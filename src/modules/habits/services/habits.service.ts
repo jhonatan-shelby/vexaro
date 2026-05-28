@@ -75,7 +75,10 @@ export async function calculateStreak(habit_id: string): Promise<{ currentStreak
   // Calculate best streak
   let previousDate: Date | null = null;
   for (let i = uniqueDates.length - 1; i >= 0; i--) {
-    const d = new Date(uniqueDates[i]);
+    const currentDate = uniqueDates[i];
+    if (!currentDate) continue;
+
+    const d = new Date(currentDate);
     if (!previousDate) {
       tempStreak = 1;
     } else {

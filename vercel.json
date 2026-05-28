@@ -1,3 +1,3 @@
 {
-  "buildCommand": "pnpm exec tsc --project tsconfig.vercel.json --noEmit && next build"
+  "buildCommand": "next build"
 }

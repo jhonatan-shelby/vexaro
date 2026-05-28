@@ -60,8 +60,10 @@ export async function calculateStreak(habit_id: string): Promise<{ currentStreak
   const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
 
   // Calculate current streak
-  if (uniqueDates[0] === today || uniqueDates[0] === yesterday) {
-    let checkDate = new Date(uniqueDates[0]);
+  const firstDate = uniqueDates[0];
+
+  if (firstDate && (firstDate === today || firstDate === yesterday)) {
+    let checkDate = new Date(firstDate);
     for (const d of uniqueDates) {
       if (d === checkDate.toISOString().slice(0, 10)) {
         currentStreak++;

@@ -1,17 +1,32 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { LogIn, Apple } from 'lucide-react';
 import { AuthService } from '@/modules/auth';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    await AuthService.signInWithPassword(email, password);
-    // In a real scenario, handle routing or error states
+    setErrorMsg('');
+    setIsLoading(true);
+    
+    const { data, error } = await AuthService.signInWithPassword(email, password);
+    
+    setIsLoading(false);
+
+    if (error) {
+      setErrorMsg(error.message);
+    } else {
+      router.push('/dashboard');
+    }
   };
 
   return (
@@ -68,11 +83,16 @@ export default function LoginPage() {
               />
             </div>
 
+            {errorMsg && (
+              <p className="text-sm text-red-500 font-medium">{errorMsg}</p>
+            )}
+
             <button
               type="submit"
-              className="w-full py-3 bg-primary text-primary-foreground rounded-md font-medium text-sm tracking-wide hover:bg-primary-container transition-colors mt-2"
+              disabled={isLoading}
+              className="w-full py-3 bg-primary text-primary-foreground rounded-md font-medium text-sm tracking-wide hover:bg-primary-container disabled:opacity-70 transition-colors mt-2"
             >
-              ENTER WORKSPACE
+              {isLoading ? 'PROCESSING...' : 'ENTER WORKSPACE'}
             </button>
           </form>
 
@@ -92,7 +112,7 @@ export default function LoginPage() {
           </div>
 
           <p className="mt-10 text-center text-sm text-muted-foreground">
-            Don&apos;t have an account? <a href="#" className="font-semibold text-foreground hover:text-secondary transition-colors">Request Access</a>
+            Don&apos;t have an account? <Link href="/register" className="font-semibold text-foreground hover:text-secondary transition-colors">Request Access</Link>
           </p>
         </div>
 

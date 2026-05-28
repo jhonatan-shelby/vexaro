@@ -11,6 +11,15 @@ export class AuthService {
     return { data, error };
   }
 
+  static async signUp(email: string, password: string) {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+    return { data, error };
+  }
+
+
   static async signInWithPassword(email: string, password: string) {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,

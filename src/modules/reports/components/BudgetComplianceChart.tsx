@@ -36,7 +36,7 @@ export function BudgetComplianceChart({ data }: BudgetComplianceChartProps) {
             <YAxis dataKey="name" type="category" tick={{ fontSize: 12 }} stroke="#888888" tickLine={false} axisLine={false} width={80} />
             <Tooltip
               contentStyle={{ borderRadius: '0.5rem', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-              formatter={(value: number, name: string) => [`$${value.toFixed(2)}`, name === 'spent' ? 'Spent' : 'Budget']}
+              formatter={(value, name) => [typeof value === 'number' ? `$${value.toFixed(2)}` : value, name === 'spent' ? 'Spent' : 'Budget']}
             />
             <Bar dataKey="budget" fill="#E5E7EB" radius={[0, 4, 4, 0]} />
             <Bar dataKey="spent" radius={[0, 4, 4, 0]}>

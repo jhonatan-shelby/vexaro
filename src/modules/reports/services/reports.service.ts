@@ -89,8 +89,9 @@ export async function getCashFlowData(period: ReportPeriod = 'monthly'): Promise
     if (!dailyFlow[day]) {
       dailyFlow[day] = { income: 0, expense: 0 };
     }
-    if (t.type === 'income') dailyFlow[day].income += t.amount;
-    else dailyFlow[day].expense += t.amount;
+    const entry = dailyFlow[day]!;
+    if (t.type === 'income') entry.income += t.amount;
+    else entry.expense += t.amount;
   });
 
   return Object.entries(dailyFlow)
@@ -168,7 +169,7 @@ export function analyzeHabitDays(data: HabitConsistencyData[]): HabitDayAnalysis
   const dayTotals: Record<number, number[]> = {};
   data.forEach((d) => {
     if (!dayTotals[d.dayOfWeek]) dayTotals[d.dayOfWeek] = [];
-    dayTotals[d.dayOfWeek].push(d.score);
+    dayTotals[d.dayOfWeek]!.push(d.score);
   });
 
   const dayAverages = Object.entries(dayTotals).map(([day, scores]) => ({
@@ -180,11 +181,12 @@ export function analyzeHabitDays(data: HabitConsistencyData[]): HabitDayAnalysis
 
   const best = dayAverages[0];
   const worst = dayAverages[dayAverages.length - 1];
+  if (!best || !worst) return null;
 
   return {
-    bestDay: DAY_NAMES[best.day],
+    bestDay: DAY_NAMES[best.day] ?? 'Unknown',
     bestDayAvg: Math.round(best.avg * 10) / 10,
-    worstDay: DAY_NAMES[worst.day],
+    worstDay: DAY_NAMES[worst.day] ?? 'Unknown',
     worstDayAvg: Math.round(worst.avg * 10) / 10,
   };
 }
